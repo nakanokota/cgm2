@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('items');
 });
 
 //作品を追加
@@ -27,3 +27,7 @@ Route::post("/items", function(Request $request){
 Route::delete("/item/{item}", function(Item $item){
     //
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
