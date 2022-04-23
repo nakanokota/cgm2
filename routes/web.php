@@ -1,5 +1,8 @@
 <?php
 
+use App\Item;
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,4 +16,14 @@
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+//作品を追加
+Route::post("/items", function(Request $request){
+    //
+});
+
+//作品を削除
+Route::delete("/item/{item}", function(Item $item){
+    //
 });
