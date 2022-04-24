@@ -13,7 +13,7 @@ class ItemsController extends Controller
 {
     //作品ダッシュボード表示
     public function index(){
-        $items = Item::orderBy('created_at', 'asc')->get();
+        $items = Item::orderBy('created_at', 'asc')->paginate(10);
         return view('items', [
             'items' => $items
         ]);
