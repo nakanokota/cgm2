@@ -45,7 +45,8 @@ Route::post("/items", function(Request $request){
 
 //作品を削除
 Route::delete("/item/{item}", function(Item $item){
-    //
+    $book->delete();       //追加
+    return redirect('/');  //追加
 });
 
 Auth::routes();
