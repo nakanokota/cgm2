@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
+    $items = Item::orderBy('created_at', 'asc')->get();
     return view('items', [
         'items' => $items
     ]);
@@ -35,7 +36,7 @@ Route::post("/items", function(Request $request){
     }
     
     // Eloquentモデル（登録処理）
-    $items = new Book;
+    $items = new Item;
     $items->item_name = $request->item_name;
     $items->published = '2017-03-07 00:00:00';
     $items->save(); 
