@@ -25,7 +25,33 @@ Route::get('/', function () {
 Route::post("/items", function(Request $request){
     //バリデーション
     $validator = Validator::make($request->all(), [
-        'item_name' => 'required|max:255',
+        "id" => "required",
+        'item_name' => 'required|max:255|min:3',
+        "published" => "required",
+    ]);
+
+    //バリデーション:エラー 
+    if ($validator->fails()) {
+        return redirect('/')
+            ->withInput()
+            ->withErrors($validator);
+    }
+    
+    // Eloquentモデル（登録処理）
+    $items = Item::find($request->id);
+    $items->item_name = $request->item_name;
+    $items->published = $request->published;
+    $items->save(); 
+    return redirect('/');
+});
+
+//更新処理
+Route::post('/books/update', function(Request $request){
+    //バリデーション
+    $validator = Validator::make($request->all(), [
+        "id" => "required",
+        'item_name' => 'required|max:255|min:3',
+        "published" => "required",
     ]);
 
     //バリデーション:エラー 
@@ -38,7 +64,7 @@ Route::post("/items", function(Request $request){
     // Eloquentモデル（登録処理）
     $items = new Item;
     $items->item_name = $request->item_name;
-    $items->published = '2017-03-07 00:00:00';
+    $items->published = $request->published;
     $items->save(); 
     return redirect('/');
 });
@@ -49,6 +75,6 @@ Route::delete("/item/{item}", function(Item $item){
     return redirect('/');  //追加
 });
 
+//Auth
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
