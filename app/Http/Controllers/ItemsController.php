@@ -11,6 +11,12 @@ use Auth;       //認証モデルを使用する
 
 class ItemsController extends Controller
 {
+    //コンストラクタ （このクラスが呼ばれたら最初に処理をする）
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     //作品ダッシュボード表示
     public function index(){
         $items = Item::orderBy('created_at', 'asc')->paginate(10);
