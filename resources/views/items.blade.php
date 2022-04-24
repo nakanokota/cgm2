@@ -33,6 +33,35 @@
             </div>
         </form>
     </div>
-    <!-- Book: 既に登録されてる作品のリスト -->
+    <!-- item: 既に登録されてる作品のリスト -->
+    <!-- 現在の作品 -->
+    @if (count($items) > 0)
+        <div class="card-body">
+            <div class="card-body">
+                <table class="table table-striped task-table">
+                    <!-- テーブルヘッダ -->
+                    <thead>
+                        <th>作品一覧</th>
+                        <th>&nbsp;</th>
+                    </thead>
+                    <!-- テーブル本体 -->
+                    <tbody>
+                        @foreach ($items as $item)
+                            <tr>
+                                <!-- 作品タイトル -->
+                                <td class="table-text">
+                                    <div>{{ $item->item_name }}</div>
+                                </td>
 
+                                <!-- 作品: 削除ボタン -->
+                                <td>
+
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    @endif
 @endsection

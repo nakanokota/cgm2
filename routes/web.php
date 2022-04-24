@@ -15,12 +15,31 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('items');
+    return view('items', [
+        'items' => $items
+    ]);
 });
 
 //作品を追加
 Route::post("/items", function(Request $request){
-    //
+    //バリデーション
+    $validator = Validator::make($request->all(), [
+        'item_name' => 'required|max:255',
+    ]);
+
+    //バリデーション:エラー 
+    if ($validator->fails()) {
+        return redirect('/')
+            ->withInput()
+            ->withErrors($validator);
+    }
+    
+    // Eloquentモデル（登録処理）
+    $items = new Book;
+    $items->item_name = $request->item_name;
+    $items->published = '2017-03-07 00:00:00';
+    $items->save(); 
+    return redirect('/');
 });
 
 //作品を削除
