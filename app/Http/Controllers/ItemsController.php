@@ -65,7 +65,7 @@ class ItemsController extends Controller
         $items->item_name = $request->item_name;
         $items->published = $request->published;
         $items->save();
-        return redirect('/');
+        return redirect('/')->with('message', '投稿が完了しました');
     }
 
     //削除
