@@ -5,7 +5,7 @@
     <!-- Bootstrapの定形コード… -->
     <div class="card-body">
         <div class="card-title">
-            作品のタイトル
+            作品の投稿
         </div>
         
         <!-- バリデーションエラーの表示に使用-->
@@ -19,8 +19,15 @@
             <!-- 作品のタイトル -->
             <div class="form-group">
                 <div class="col-sm-6">
+                <label for="published" class="col-sm-3 control-label">作品のタイトル</label>
                     <input type="text" name="item_name" class="form-control">
                 </div>
+            </div>
+
+            <!-- 公開日 -->
+            <div class="form-group col-md-6">
+                <label for="published" class="col-sm-3 control-label">公開日</label>
+                <input type="date" name="published" class="form-control">
             </div>
 
             <!-- 作品 登録ボタン -->
@@ -33,6 +40,7 @@
             </div>
         </form>
     </div>
+
     <!-- item: 既に登録されてる作品のリスト -->
     <!-- 現在の作品 -->
     @if (count($items) > 0)
@@ -51,6 +59,16 @@
                                 <!-- 作品タイトル -->
                                 <td class="table-text">
                                     <div>{{ $item->item_name }}</div>
+                                </td>
+
+                                <!-- 本: 更新ボタン -->
+                                <td>
+                                    <form action="{{ url('items_edit/'.$item->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary">
+                                            更新
+                                        </button>
+                                    </form>
                                 </td>
 
                                 <!-- 作品: 削除ボタン -->

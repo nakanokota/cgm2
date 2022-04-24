@@ -25,7 +25,6 @@ Route::get('/', function () {
 Route::post("/items", function(Request $request){
     //バリデーション
     $validator = Validator::make($request->all(), [
-        "id" => "required",
         'item_name' => 'required|max:255|min:3',
         "published" => "required",
     ]);
@@ -38,11 +37,17 @@ Route::post("/items", function(Request $request){
     }
     
     // Eloquentモデル（登録処理）
-    $items = Item::find($request->id);
+    $items = new Item;
     $items->item_name = $request->item_name;
     $items->published = $request->published;
     $items->save(); 
     return redirect('/');
+});
+
+//更新画面
+Route::post('/items_edit/{items}', function(Item $items) {
+    //{items}id 値を取得 => item $items id 値の1レコード取得
+    return view('items_edit', ['item' => $items]);
 });
 
 //更新処理
@@ -62,7 +67,7 @@ Route::post('/books/update', function(Request $request){
     }
     
     // Eloquentモデル（登録処理）
-    $items = new Item;
+    $items = Item::find($request->id);
     $items->item_name = $request->item_name;
     $items->published = $request->published;
     $items->save(); 
