@@ -19,15 +19,17 @@
             <!-- 作品のタイトル -->
             <div class="form-group">
                 <div class="col-sm-6">
-                <label for="published" class="col-sm-3 control-label">作品のタイトル</label>
+                    <label for="published" class="col-sm-3 control-label">作品のタイトル</label>
                     <input type="text" name="item_name" class="form-control">
                 </div>
             </div>
 
             <!-- file追加 -->
-            <div class="col-sm-6">
-                <label>画像</label>
-                <input type="file" accept=".png, .jpg" name="item_img">
+            <div class="form-group">
+                <div class="col-sm-6">
+                    <label for="published" class="col-sm-3 control-label">作品</label><br>
+                    <input type="file" accept=".png, .jpg" name="item_img">
+                </div>
             </div>
 
             <!-- 作品 登録ボタン -->
