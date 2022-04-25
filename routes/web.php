@@ -32,3 +32,6 @@ Route::delete("/item/{item}", "ItemsController@destroy");
 //Auth
 Auth::routes();
 Route::get('/home', 'ItemsController@index')->name('home');
+
+//
+Route::get("/public", "publicController@index");
