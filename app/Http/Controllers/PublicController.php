@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 
 //使うClassを宣言:自分で追加
 use App\Item;   //Itemモデルを使えるようにする
+use App\User;
 use Validator;  //バリデーションを使えるようにする
 use Auth;       //認証モデルを使用する
 
@@ -21,6 +22,10 @@ class PublicController extends Controller
     //詳細画面
     public function detail($item_id){
         $items = Item::find($item_id);
-        return view('public_items_detail', ['item' => $items]);
+        $users = User::find($items->user_id);
+        return view('public_items_detail', [
+            'item' => $items,
+            "user" => $users
+        ]);
     }
 }
