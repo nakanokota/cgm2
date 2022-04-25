@@ -57,6 +57,7 @@ class ItemsController extends Controller
         //バリデーション
         $validator = Validator::make($request->all(), [
                 'item_name' => 'required|min:3|max:255',
+                "item_img" => "required|image|max:3000",
         ]);
         //バリデーション:エラー 
         if ($validator->fails()) {
@@ -69,6 +70,10 @@ class ItemsController extends Controller
         $items->user_id  = Auth::user()->id; //追加のコード
         $items->item_name = $request->item_name;
         $items->save();
+
+        $file = $request->file('item_img'); //file取得
+        $filename = "img_".$items->id.".jpg";   //ファイル名
+        $move = $file->move('./upload/',$filename);
         return redirect('/')->with('message', '投稿が完了しました');
     }
 

@@ -13,7 +13,7 @@
         <!-- バリデーションエラーの表示に使用-->
 
         <!-- 作品登録フォーム -->
-        <form action="{{ url('items') }}" method="POST" class="form-horizontal">
+        <form enctype="multipart/form-data" action="{{ url('items') }}"method="POST" class="form-horizontal">
             @csrf
 
             <!-- 作品のタイトル -->
@@ -22,6 +22,12 @@
                 <label for="published" class="col-sm-3 control-label">作品のタイトル</label>
                     <input type="text" name="item_name" class="form-control">
                 </div>
+            </div>
+
+            <!-- file追加 -->
+            <div class="col-sm-6">
+                <label>画像</label>
+                <input type="file" accept=".png, .jpg" name="item_img">
             </div>
 
             <!-- 作品 登録ボタン -->
@@ -58,6 +64,7 @@
                                 <!-- 作品タイトル -->
                                 <td class="table-text">
                                     <div>{{ $item->item_name }}</div>
+                                    <div> <img src="upload/img_{{$item->id}}.jpg" width="100"></div>
                                 </td>
 
                                 <!-- 本: 更新ボタン -->
