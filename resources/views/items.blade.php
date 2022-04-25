@@ -24,12 +24,6 @@
                 </div>
             </div>
 
-            <!-- 公開日 -->
-            <div class="form-group col-md-6">
-                <label for="published" class="col-sm-3 control-label">公開日</label>
-                <input type="date" name="published" class="form-control">
-            </div>
-
             <!-- 作品 登録ボタン -->
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-6">

@@ -15,8 +15,8 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('user_id'); //Add:user_id
             $table->string("item_name");
-            $table->datetime("published");
             $table->timestamps();
         });
     }

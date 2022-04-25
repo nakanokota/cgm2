@@ -19,14 +19,15 @@ class ItemsController extends Controller
 
     //作品ダッシュボード表示
     public function index(){
-        $items = Item::orderBy('created_at', 'asc')->paginate(10);
+        $items = Item::where('user_id',Auth::user()->id)->orderBy('created_at', 'asc')->paginate(10);
         return view('items', [
             'items' => $items
         ]);
     }
 
     //更新画面
-    public function edit(Item $items){
+    public function edit($item_id){
+        $books = Book::where('user_id',Auth::user()->id)->find($book_id);
         return view('items_edit', ['item' => $items]);
     }
 
@@ -36,7 +37,6 @@ class ItemsController extends Controller
         $validator = Validator::make($request->all(), [
             'id' => 'required',
             'item_name' => 'required|min:3|max:255',
-            'published' => 'required',
         ]); 
         //バリデーション:エラー 
         if ($validator->fails()) {
@@ -46,7 +46,7 @@ class ItemsController extends Controller
         }
         
         // データ更新
-        $items = Item::find($request->id);
+        $items = Item::where('user_id',Auth::user()->id)->find($request->id);
         $items->item_name   = $request->item_name;
         $items->published   = $request->published;
         $items->save();
@@ -58,7 +58,6 @@ class ItemsController extends Controller
         //バリデーション
         $validator = Validator::make($request->all(), [
                 'item_name' => 'required|min:3|max:255',
-                'published' => 'required',
         ]);
         //バリデーション:エラー 
         if ($validator->fails()) {
@@ -68,6 +67,7 @@ class ItemsController extends Controller
         }
         // Eloquentモデル（登録処理）
         $items = new Item;
+        $items->user_id  = Auth::user()->id; //追加のコード
         $items->item_name = $request->item_name;
         $items->published = $request->published;
         $items->save();
