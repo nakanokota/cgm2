@@ -27,7 +27,7 @@ class ItemsController extends Controller
 
     //更新画面
     public function edit($item_id){
-        $books = Book::where('user_id',Auth::user()->id)->find($book_id);
+        $items = Item::where('user_id',Auth::user()->id)->find($item_id);
         return view('items_edit', ['item' => $items]);
     }
 
@@ -48,7 +48,6 @@ class ItemsController extends Controller
         // データ更新
         $items = Item::where('user_id',Auth::user()->id)->find($request->id);
         $items->item_name   = $request->item_name;
-        $items->published   = $request->published;
         $items->save();
         return redirect('/');
     }
@@ -69,7 +68,6 @@ class ItemsController extends Controller
         $items = new Item;
         $items->user_id  = Auth::user()->id; //追加のコード
         $items->item_name = $request->item_name;
-        $items->published = $request->published;
         $items->save();
         return redirect('/')->with('message', '投稿が完了しました');
     }

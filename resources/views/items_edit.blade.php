@@ -12,13 +12,6 @@
         </div>
         <!--/ item_name -->
         
-        <!-- published -->
-        <div class="form-group">
-           <label for="published">published</label>
-            <input type="datetime" name="published" class="form-control" value="{{$item->published}}"/>
-        </div>
-        <!--/ published -->
-        
         <!-- Saveボタン/Backボタン -->
         <div class="well well-sm">
             <button type="submit" class="btn btn-primary">Save</button>
