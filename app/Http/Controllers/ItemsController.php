@@ -19,7 +19,7 @@ class ItemsController extends Controller
 
     //作品ダッシュボード表示
     public function index(){
-        $items = Item::where('user_id',Auth::user()->id)->orderBy('created_at', 'asc')->paginate(10);
+        $items = Item::where('user_id',Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
         return view('items', [
             'items' => $items
         ]);
