@@ -20,6 +20,9 @@ Route::get('/', "ItemsController@index");
 //作品を追加
 Route::post("/items", "ItemsController@create");
 
+//詳細画面
+Route::post('items_detail/{items}', "ItemsController@detail");
+
 //更新画面
 Route::post('/items_edit/{items}', "ItemsController@edit");
 

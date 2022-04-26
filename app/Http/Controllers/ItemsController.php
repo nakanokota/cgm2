@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 
 //使うClassを宣言:自分で追加
 use App\Item;   //Itemモデルを使えるようにする
+use App\User;
 use Validator;  //バリデーションを使えるようにする
 use Auth;       //認証モデルを使用する
 
@@ -22,6 +23,16 @@ class ItemsController extends Controller
         $items = Item::where('user_id',Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
         return view('items', [
             'items' => $items
+        ]);
+    }
+
+    //詳細画面
+    public function detail($item_id){
+        $items = Item::find($item_id);
+        $users = User::find($items->user_id);
+        return view('items_detail', [
+            'item' => $items,
+            "user" => $users
         ]);
     }
 
@@ -79,6 +90,9 @@ class ItemsController extends Controller
 
     //削除
     public function destroy(Item $item){
+        if(file_exists(public_path('./upload/img_'.$item->id.'.jpg'))){
+            unlink(public_path('./upload/img_'.$item->id.'.jpg'));
+        }
         $item->delete();
         return redirect('/');
     }

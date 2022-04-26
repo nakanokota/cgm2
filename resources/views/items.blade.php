@@ -69,12 +69,22 @@
                                     <div> <img src="upload/img_{{$item->id}}.jpg" width="100"></div>
                                 </td>
 
-                                <!-- 本: 更新ボタン -->
+                                <!-- 詳細ボタン -->
+                                <td>
+                                    <form action="{{ url('items_detail/'.$item->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary">
+                                            詳細
+                                        </button>
+                                    </form>
+                                </td>
+
+                                <!-- 本: 編集ボタン -->
                                 <td>
                                     <form action="{{ url('items_edit/'.$item->id) }}" method="POST">
                                         @csrf
                                         <button type="submit" class="btn btn-primary">
-                                            更新
+                                            編集
                                         </button>
                                     </form>
                                 </td>

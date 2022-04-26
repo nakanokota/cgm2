@@ -23,7 +23,7 @@ class PublicController extends Controller
     public function detail($item_id){
         $items = Item::find($item_id);
         $users = User::find($items->user_id);
-        return view('public_items_detail', [
+        return view('items_detail', [
             'item' => $items,
             "user" => $users
         ]);
