@@ -8,8 +8,9 @@
 
             <div class="form-group">
                 <table class="table table-striped task-table">
+                <td class="table-text">作品名:{{$item->item_name}}</td> <!-- 作品名 -->
                     <td class="table-text">投稿者:{{$user->name}}</td> <!-- 投稿者 -->
-                    <td class="table-text">投稿日:{{$item->created_at}}</td>　<!-- 投稿日 -->
+                    <td class="table-text">投稿日:{{$item->created_at}}</td> <!-- 投稿日 -->
                 </table>
             </div>
         </div>
