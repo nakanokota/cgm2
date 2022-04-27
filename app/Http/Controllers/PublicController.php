@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 //使うClassを宣言:自分で追加
 use App\Item;   //Itemモデルを使えるようにする
 use App\User;
+use App\Comment;
 use Validator;  //バリデーションを使えるようにする
 use Auth;       //認証モデルを使用する
 
@@ -23,9 +24,11 @@ class PublicController extends Controller
     public function detail($item_id){
         $items = Item::find($item_id);
         $users = User::find($items->user_id);
+        $comments = Comment::where("item_id", $items->id)->orderBy('created_at', 'desc')->paginate(30);
         return view('items_detail', [
             'item' => $items,
-            "user" => $users
+            "user" => $users,
+            "comments" => $comments,
         ]);
     }
 }

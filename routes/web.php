@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 |
 */
 
+//ItemsController
 //作品ダッシュボード表示
 Route::get('/', "ItemsController@index");
 
@@ -37,8 +38,12 @@ Auth::routes();
 Route::get('/home', 'ItemsController@index')->name('home');
 
 
+//PublicController
 //全作品ダッシュボード表示
 Route::get("/public", "PublicController@index");
 
 //詳細画面
 Route::post('public_items_detail/{items}', "PublicController@detail");
+
+
+//CommentsController

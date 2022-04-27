@@ -36,4 +36,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function comments()
+    {
+        //App\Commentモデルのデータを取得する
+        return $this->hasMany('App\Comment');
+    }
+
+    public function items()
+    {
+        //App\Itemモデルのデータを取得する
+        return $this->hasMany('App\Item');
+    }
 }
