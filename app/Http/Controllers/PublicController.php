@@ -24,7 +24,7 @@ class PublicController extends Controller
     public function detail($item_id){
         $items = Item::find($item_id);
         $users = User::find($items->user_id);
-        $comments = Comment::where("item_id", $items->id)->orderBy('created_at', 'desc')->paginate(30);
+        $comments = Comment::where("item_id", $items->id)->orderBy('created_at', 'desc')->paginate(20);
         return view('items_detail', [
             'item' => $items,
             "user" => $users,

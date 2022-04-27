@@ -43,7 +43,7 @@ Route::get('/home', 'ItemsController@index')->name('home');
 Route::get("/public", "PublicController@index");
 
 //詳細画面
-Route::post('public_items_detail/{items}', "PublicController@detail");
+Route::match(['get', 'post'],'public_items_detail/{items}', "PublicController@detail");
 
 
 //CommentsController
