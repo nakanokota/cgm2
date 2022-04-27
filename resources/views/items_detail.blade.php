@@ -63,37 +63,37 @@
         @endguest
         <!-- コメント欄ボードビュー -->
         @if (count($comments) > 0)
-        <div class="card-body">
             <div class="card-body">
-                <table class="table table-striped task-table">
-                    <!-- テーブルヘッダ -->
-                    <thead>
-                        <th>コメント一覧</th>
-                        <th>&nbsp;</th>
-                    </thead>
-                    <!-- テーブル本体 -->
-                    <tbody>
-                        @foreach ($comments as $comment)
-                            <tr>
-                                <!-- 投稿者、コメント内容 -->
-                                <td class="table-text">
-                                    <div>{{ $comment->getData() }}さん</div>
-                                    <div> {{ $comment->content }}</div>
-                                </td>
+                <div class="card-body">
+                    <table class="table table-striped task-table">
+                        <!-- テーブルヘッダ -->
+                        <thead>
+                            <th>コメント一覧</th>
+                            <th>&nbsp;</th>
+                        </thead>
+                        <!-- テーブル本体 -->
+                        <tbody>
+                            @foreach ($comments as $comment)
+                                <tr>
+                                    <!-- 投稿者、コメント内容 -->
+                                    <td class="table-text">
+                                        <div>{{ $comment->getData() }}さん</div>
+                                        <div> {{ $comment->content }}</div>
+                                    </td>
 
-                                <!-- 投稿日時 -->
-                                <td class="table-text"></td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                    <!-- 投稿日時 -->
+                                    <td class="table-text"></td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 offset-md-4">
-                {{ $comments->links()}}
+            <div class="row">
+                <div class="col-md-4 offset-md-4">
+                    {{ $comments->links()}}
+                </div>
             </div>
-       </div>
-    @endif
+        @endif
     </div>
 @endsection

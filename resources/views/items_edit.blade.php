@@ -7,16 +7,16 @@
 
         <!-- item_name -->
         <div class="form-group">
-           <label for="item_name">Title</label>
+           <label for="item_name">作品名</label>
            <input type="text" name="item_name" class="form-control" value="{{$item->item_name}}">
         </div>
         <!--/ item_name -->
         
         <!-- Saveボタン/Backボタン -->
         <div class="well well-sm">
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary">修正</button>
             <a class="btn btn-link pull-right" href="{{ url('/') }}">
-                Back
+                戻る
             </a>
         </div>
         <!--/ Saveボタン/Backボタン -->
