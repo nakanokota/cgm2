@@ -70,7 +70,7 @@ class ItemsController extends Controller
     public function create(Request $request) {
         //バリデーション
         $validator = Validator::make($request->all(), [
-                'item_name' => 'required|min:3|max:255',
+                'item_name' => 'required|max:200',
                 "item_img" => "required|image|max:3000",
         ]);
         //バリデーション:エラー 

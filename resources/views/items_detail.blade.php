@@ -32,8 +32,8 @@
                 @include('common.errors')
                 <!-- バリデーションエラーの表示に使用-->
 
-                <!-- 作品登録フォーム -->
-                <form enctype="multipart/form-data" action="{{ url('items') }}"method="POST" class="form-horizontal">
+                <!-- コメント投稿フォーム -->
+                <form action="{{ url('comments/'.$item->id) }}"method="POST" class="form-horizontal">
                     @csrf
 
                     <!-- 作品のタイトル -->
@@ -44,7 +44,7 @@
                         </div>
                     </div>
 
-                    <!-- 作品 登録ボタン -->
+                    <!-- コメント投稿ボタン -->
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-6">
                             <button type="submit" class="btn btn-primary">
@@ -69,20 +69,22 @@
                         <!-- テーブルヘッダ -->
                         <thead>
                             <th>コメント一覧</th>
-                            <th>&nbsp;</th>
                         </thead>
                         <!-- テーブル本体 -->
                         <tbody>
                             @foreach ($comments as $comment)
                                 <tr>
-                                    <!-- 投稿者、コメント内容 -->
-                                    <td class="table-text">
-                                        <div>{{ $comment->getData() }}さん</div>
+                                    <td class="table-text" style="width: 100%">
+                                        <div style=" display: flex">
+                                            <!-- 投稿者 -->
+                                            <div style="width: 50%">{{ $comment->getData() }}さん</div>
+                                            <!-- 投稿日時 -->
+                                            <div style="width: 50%">{{ $comment->created_at }}</div>
+                                        </div>
+                                        <!-- 投稿内容 -->
                                         <div> {{ $comment->content }}</div>
                                     </td>
-
-                                    <!-- 投稿日時 -->
-                                    <td class="table-text"></td>
+                                    
                                 </tr>
                             @endforeach
                         </tbody>
