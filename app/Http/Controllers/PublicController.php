@@ -31,4 +31,9 @@ class PublicController extends Controller
             "comments" => $comments,
         ]);
     }
+
+    //error
+    public function error(){
+        return redirect("/error");
+    }
 }

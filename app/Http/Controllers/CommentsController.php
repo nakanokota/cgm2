@@ -27,9 +27,15 @@ class CommentsController extends Controller
         ]);
         //バリデーション:エラー 
         if ($validator->fails()) {
-                return redirect('/')
-                    ->withInput()
-                    ->withErrors($validator);
+            $items = Item::find($item_id);
+            $users = User::find($items->user_id);
+            $comments = Comment::where("item_id", $items->id)->orderBy('created_at', 'desc')->paginate(20);
+            Session::flash('error', '入力がされていないか、入力できる量を超えています');
+            return view('items_detail', [
+                'item' => $items,
+                "user" => $users,
+                "comments" => $comments,
+            ]);
         }
         // Eloquentモデル（登録処理）
         $comments = new Comment;
@@ -41,7 +47,7 @@ class CommentsController extends Controller
         $items = Item::find($item_id);
         $users = User::find($items->user_id);
         $comments = Comment::where("item_id", $items->id)->orderBy('created_at', 'desc')->paginate(20);
-        Session::put('message', '投稿が完了しました');
+        Session::flash('message', '投稿が完了しました');
         return view('items_detail', [
             'item' => $items,
             "user" => $users,

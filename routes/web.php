@@ -49,3 +49,7 @@ Route::match(['get', 'post'],'public_items_detail/{items}', "PublicController@de
 //CommentsController
 //コメントを追加
 Route::match(['get', 'post'], "comments/{items}", "CommentsController@create");
+
+
+//error
+//Route::get("/error", "PublicController@error");
