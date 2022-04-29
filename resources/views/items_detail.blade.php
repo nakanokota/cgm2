@@ -54,7 +54,7 @@
                     </div>
                 </form>
             </div>
-            
+
             <!-- 成功メッセージ -->
             @include('common.success')
             <!-- 成功メッセージ -->
@@ -81,7 +81,7 @@
                                             <div style="width: 50%">{{ $comment->created_at }}</div>
                                         </div>
                                         <!-- 投稿内容 -->
-                                        <div> {{ $comment->content }}</div>
+                                        <div style="white-space: pre-wrap"> {{ $comment->content }}</div>
                                     </td>
                                     
                                 </tr>
