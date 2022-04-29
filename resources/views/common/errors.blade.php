@@ -12,3 +12,10 @@
         </div>
     </div>
 @endif
+
+@if (Session::has('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    {{Session::forget("error")}}
+@endif

@@ -63,7 +63,7 @@ class ItemsController extends Controller
         $items = Item::where('user_id',Auth::user()->id)->find($request->id);
         $items->item_name   = $request->item_name;
         $items->save();
-        return redirect('/');
+        return redirect('/')->with('message', '修正が完了しました');
     }
 
     //登録

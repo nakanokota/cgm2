@@ -30,13 +30,6 @@
                 
                 <!-- バリデーションエラーの表示に使用-->
                 @include('common.errors')
-                
-                @if (Session::has('error'))
-                    <div class="alert alert-danger">
-                        {{ session('error') }}
-                    </div>
-                    {{Session::forget("error")}}
-                @endif
                 <!-- バリデーションエラーの表示に使用-->
 
                 <!-- コメント投稿フォーム -->
@@ -61,12 +54,10 @@
                     </div>
                 </form>
             </div>
-            @if (Session::has('message'))
-                <div class="alert alert-success">
-                    {{ session('message') }}
-                </div>
-                {{Session::forget("message")}}
-            @endif
+            
+            <!-- 成功メッセージ -->
+            @include('common.success')
+            <!-- 成功メッセージ -->
 
         @endguest
         <!-- コメント欄ボードビュー -->

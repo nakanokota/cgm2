@@ -36,17 +36,16 @@
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-6">
                     <button type="submit" class="btn btn-primary">
-                        Save
+                        投稿
                     </button>
                 </div>
             </div>
         </form>
     </div>
-    @if (session('message'))
-      <div class="alert alert-success">
-          {{ session('message') }}
-      </div>
-    @endif
+    
+    <!-- 成功メッセージ -->
+    @include('common.success')
+    <!-- 成功メッセージ -->
 
     <!-- item: 既に登録されてる作品のリスト -->
     <!-- 現在の作品 -->
